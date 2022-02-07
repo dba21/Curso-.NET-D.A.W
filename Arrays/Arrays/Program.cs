@@ -60,15 +60,49 @@ static void compara(int[] lista1, int[] lista2)
     }
     else
     {
-        Console.WriteLine("Os números das listas diferentes são:\n");
+        Console.WriteLine("Os números das listas diferentes são:");
         for (int i = 0; i < lista1.Length; i++)
         {
             if (lista1[i] != lista2[i])
             {
-                Console.WriteLine("Elemento " + lista1[i] + " diferente (!=) " + lista2[i]);
+                Console.WriteLine("Elemento " + lista1[i] + " diferente (!=) " + lista2[i] + "");
             }
         }
 
     }
 }
 
+// Two-dimensional Array
+DateTime now = DateTime.Now;
+Random rand = new Random ((int) now.Millisecond);
+
+int[,] grades = new int[4, 10];
+for (int a = 0; a < grades.GetLength (0); ++a)
+{
+    for (int b = 0; b < grades.GetLength (1); ++b)
+    {
+        grades[a,b] = 9 + rand.Next() % 12;
+    }
+}
+
+int[] average = new int[10];
+Console.WriteLine("\nResumo das notas:");
+Console.WriteLine("Estudantes  1   2   3   4   5   6   7   8   9  10");
+Console.WriteLine("       ------------------------------------------");
+
+for (int a = 0; a < grades.GetLength(0); ++a)
+{
+    Console.Write("Teste  " + (a + 1 +"|") );
+    for (int b = 0; b < grades.GetLength(1); ++b)
+    {
+        average[b] += grades[a,b];
+        Console.Write("{0,4:D}", grades [a,b]);
+    }
+    Console.WriteLine();
+}
+Console.Write("\r\n  Média  ");
+foreach(int avg in average)
+{
+    Console.Write("{0,4:D}", avg / grades.GetLength(0));
+}
+Console.WriteLine();
